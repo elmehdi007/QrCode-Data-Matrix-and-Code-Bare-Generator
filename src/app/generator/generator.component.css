@@ -12,3 +12,9 @@ input[type=radio] {
     background: none;
     visibility: hidden;
 }
+
+::ng-deep #qr-codecontent,
+::ng-deep #qr-code-data-matrixcontent,
+::ng-deep #bar-codecontent{
+    background: #ffffff00 !important;
+}

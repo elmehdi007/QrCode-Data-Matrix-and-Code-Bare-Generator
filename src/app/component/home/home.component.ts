@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
     this.titleService.currentState.subscribe(state => this.headerTitle = state);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

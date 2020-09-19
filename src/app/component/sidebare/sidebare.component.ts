@@ -8,9 +8,9 @@ import { TitleService } from '../../Services/title.service';
 })
 export class SidebareComponent implements OnInit {
 
-  constructor() {
-  }
+  sideBarClosed = (window.screen.width < 600 || navigator.userAgent.indexOf("Mobi") > -1)?true:false;
+
+  constructor() {}
 
   ngOnInit(): void {}
-
 }

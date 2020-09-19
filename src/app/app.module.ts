@@ -44,7 +44,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     ReactiveFormsModule,
     MaskedTextBoxModule,
     NumericTextBoxModule,
-    ZXingScannerModule
+    ZXingScannerModule,
   ],
   declarations: [
     AppComponent,

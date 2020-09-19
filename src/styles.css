@@ -8243,7 +8243,7 @@ h1, h2, h3, h4, h5,
     #sidebar {
       margin-left: -270px; }
       #sidebar.active {
-        margin-left: 0; } }
+       } }
   #sidebar .custom-menu {
     display: inline-block;
     position: absolute;
