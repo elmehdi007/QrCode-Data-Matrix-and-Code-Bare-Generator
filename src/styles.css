@@ -8236,7 +8236,7 @@ h1, h2, h3, h4, h5,
         color: #44bef1; }
       #sidebar ul li a:hover {
         color: #fff; }
-    #sidebar ul li.active > a {
+    #sidebar ul li > a.active {
       background: transparent;
       color: #fff; }
   @media (max-width: 991.98px) {
