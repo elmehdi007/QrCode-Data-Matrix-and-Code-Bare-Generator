@@ -24,6 +24,7 @@ import { HomeComponent } from './component/home/home.component';
 import { ScanComponent } from './scan/scan.component';
 import { TitleService } from './Services/title.service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MaskedTextBoxModule,
     NumericTextBoxModule,
     ZXingScannerModule,
+    DialogsModule
   ],
   declarations: [
     AppComponent,

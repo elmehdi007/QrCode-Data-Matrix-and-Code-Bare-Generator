@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DisplayTextModel } from '@syncfusion/ej2-angular-barcode-generator';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { TitleService } from '../Services/title.service';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-generator',
@@ -14,6 +13,7 @@ export class GeneratorComponent implements OnInit {
   @ViewChild('qrcodeDataMatrix') qrcodeDataMatrix;
   @ViewChild('qrCode') qrCode;
   @ViewChild('barCode') barCode;
+  //@ViewChild('dialogResultat') dialogResultat;
 
   formGroupTxt = new FormGroup({
     text: new FormControl(''),
@@ -75,8 +75,9 @@ export class GeneratorComponent implements OnInit {
   public isContact: Boolean;
   public isPhone: Boolean;
   public isSms: Boolean;
+  opened: boolean;
 
-  constructor(){}
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -145,7 +146,6 @@ export class GeneratorComponent implements OnInit {
   }
 
   public selectedDataType(codetype: { name: string; icon: string }): void {
-    console.log(codetype);
 
     switch (codetype.name) {
       case 'text':
@@ -154,7 +154,6 @@ export class GeneratorComponent implements OnInit {
         this.isContact = false;
         this.isPhone = false;
         this.isSms = false;
-        console.log(codetype.name);
         break;
 
       case 'url':
@@ -172,7 +171,6 @@ export class GeneratorComponent implements OnInit {
         this.isContact = true;
         this.isPhone = false;
         this.isSms = false;
-        console.log(codetype.name);
         break;
 
       case 'phone':
@@ -181,7 +179,6 @@ export class GeneratorComponent implements OnInit {
         this.isContact = false;
         this.isPhone = true;
         this.isSms = false;
-        console.log(codetype.name);
         break;
       case 'sms':
         this.isText = false;
@@ -189,18 +186,27 @@ export class GeneratorComponent implements OnInit {
         this.isContact = false;
         this.isPhone = false;
         this.isSms = true;
-        console.log(codetype.name);
         break;
       default:
         break;
     }
   }
 
-  getChild(activatedRoute: ActivatedRoute) {
-    if (activatedRoute.firstChild) {
-      return this.getChild(activatedRoute.firstChild);
-    } else {
-      return activatedRoute;
-    }
+  saveCode() {
+    html2canvas(document.querySelector("#col-code-inner")).then(canvasImage => {
+      this.opened = true;
+      //canvasImage.id = 'dialog-resultat-canvas';
+      setTimeout(() => {
+        document.getElementById('dialog-resultat').appendChild(canvasImage);
+      }, 1000);
+    });
+  }
+
+  public close(status) {
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 }

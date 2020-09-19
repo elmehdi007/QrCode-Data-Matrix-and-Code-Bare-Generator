@@ -142,26 +142,36 @@
                                 <input formControlName="website" kendoTextBox />
                             </kendo-floatinglabel>
                         </div>
-
                     </div>
                 </div>
             </div>
 
         </div>
         <div class="col-lg-4">
-            <div [ngClass]="!isCodeBare  ? 'hidden-code' : ''">
-                <ejs-barcodegenerator style="display: block;" #barCode id="bar-code" width="200px" height="150px"
-                    mode="SVG" type="Codabar" value="0"></ejs-barcodegenerator>
+            <div id="col-code-inner">
+                <div [ngClass]="!isCodeBare  ? 'hidden-code' : ''">
+                    <ejs-barcodegenerator style="display: block;" #barCode id="bar-code" width="200px" height="150px"
+                        mode="SVG" type="Codabar" value="0"></ejs-barcodegenerator>
+                </div>
+
+                <div [ngClass]="!isQrCode  ? 'hidden-code' : ''">
+                    <ejs-qrcodegenerator style="display: block;" #qrCode id="qr-code" width="200px" height="150px"
+                        mode="SVG" value=" "></ejs-qrcodegenerator>
+                </div>
+                <div [ngClass]="!isDataMatrix  ? 'hidden-code' : ''">
+                    <ejs-datamatrixgenerator style="display: block;" #qrcodeDataMatrix id="qr-code-data-matrix"
+                        width="200px" height="200px" mode="SVG" type="DataMatrix" value=" ">
+                    </ejs-datamatrixgenerator>
+                </div>
             </div>
 
-            <div [ngClass]="!isQrCode  ? 'hidden-code' : ''">
-                <ejs-qrcodegenerator style="display: block;" #qrCode id="qr-code" width="200px" height="150px"
-                    mode="SVG" value=" "></ejs-qrcodegenerator>
-            </div>
-            <div [ngClass]="!isDataMatrix  ? 'hidden-code' : ''">
-                <ejs-datamatrixgenerator style="display: block;" #qrcodeDataMatrix id="qr-code-data-matrix"
-                    width="200px" height="200px" mode="SVG" type="DataMatrix" value=" ">
-                </ejs-datamatrixgenerator>
-            </div>
+            <button kendoButton [iconClass]="'fa fa-calendar fa-fw'" (click)="saveCode()">Events</button>
         </div>
+        <kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+            <div id="dialog-resultat" #dialogResultat style="text-align: center;"></div>
+            <kendo-dialog-actions>
+                <button kendoButton (click)="close('no')">No</button>
+                <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
     </div>
