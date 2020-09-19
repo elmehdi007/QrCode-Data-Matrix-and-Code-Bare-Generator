@@ -149,7 +149,7 @@
 
             <div class="section">
                 <br/>
-                <button kendoButton [iconClass]="'fa fa-calendar fa-fw'" (click)="saveCode()">Save</button>
+                <button kendoButton [iconClass]="'fa fa-floppy-o'" (click)="saveCode()">Save</button>
             </div>
         </div>
         <div class="col-lg-4">
@@ -175,6 +175,13 @@
             <kendo-dialog-actions>
                 <button kendoButton (click)="close('no')">No</button>
                 <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
+
+        <kendo-dialog title="Error" *ngIf="isError" (close)="close('cancel')" [minWidth]="250" [width]="450">
+            <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+            <kendo-dialog-actions>
+                <button kendoButton (click)="close('no')">No</button>
             </kendo-dialog-actions>
         </kendo-dialog>
     </div>

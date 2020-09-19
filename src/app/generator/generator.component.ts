@@ -76,7 +76,9 @@ export class GeneratorComponent implements OnInit {
   public isContact: Boolean;
   public isPhone: Boolean;
   public isSms: Boolean;
-  opened: boolean;
+
+  public opened: boolean;
+  public isError: boolean = false;
 
   constructor() { }
 
@@ -206,9 +208,15 @@ export class GeneratorComponent implements OnInit {
   public close(status) {
     this.opened = false;
     if (status == 'yes') {
-      document.getElementById('dialog-resultat-canvas').toBlob(function (blob) {
-        saveAs(blob, "pretty image.png");
-      });
+      let canvas: HTMLCanvasElement = document.getElementById('dialog-resultat-canvas') as HTMLCanvasElement;
+      if (canvas) {
+        canvas.toBlob(function (blob) {
+          saveAs(blob, "pretty image.png");
+        });
+      }
+      else {
+        this.isError = true;
+      }
     }
   }
 

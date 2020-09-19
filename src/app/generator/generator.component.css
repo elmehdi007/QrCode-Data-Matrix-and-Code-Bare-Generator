@@ -18,3 +18,8 @@ input[type=radio] {
 ::ng-deep #bar-codecontent{
     background: #ffffff00 !important;
 }
+
+::ng-deep .fa-save:before, .fa-floppy-o:before {
+    content: "\f0c7";
+    padding: 3px;
+}
