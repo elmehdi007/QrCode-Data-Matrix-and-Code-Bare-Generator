@@ -37,6 +37,7 @@
     "@progress/kendo-angular-label": "^2.3.2",
     "@progress/kendo-angular-popup": "^3.0.6",
     "@progress/kendo-drawing": "^1.9.1",
+    "@progress/kendo-file-saver": "^1.1.0",
     "@progress/kendo-theme-default": "latest",
     "@syncfusion/ej2-angular-barcode-generator": "^18.2.54",
     "@zxing/ngx-scanner": "^3.0.1",

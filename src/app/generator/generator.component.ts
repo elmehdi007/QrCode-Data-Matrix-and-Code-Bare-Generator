@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DisplayTextModel } from '@syncfusion/ej2-angular-barcode-generator';
 import { FormGroup, FormControl } from '@angular/forms';
 import html2canvas from 'html2canvas';
+import { encodeBase64, saveAs } from '@progress/kendo-file-saver';
 
 @Component({
   selector: 'app-generator',
@@ -13,7 +14,7 @@ export class GeneratorComponent implements OnInit {
   @ViewChild('qrcodeDataMatrix') qrcodeDataMatrix;
   @ViewChild('qrCode') qrCode;
   @ViewChild('barCode') barCode;
-  //@ViewChild('dialogResultat') dialogResultat;
+  @ViewChild('dialogResultat') dialogResultat;
 
   formGroupTxt = new FormGroup({
     text: new FormControl(''),
@@ -195,7 +196,7 @@ export class GeneratorComponent implements OnInit {
   saveCode() {
     html2canvas(document.querySelector("#col-code-inner")).then(canvasImage => {
       this.opened = true;
-      //canvasImage.id = 'dialog-resultat-canvas';
+      canvasImage.id = 'dialog-resultat-canvas';
       setTimeout(() => {
         document.getElementById('dialog-resultat').appendChild(canvasImage);
       }, 1000);
@@ -204,6 +205,11 @@ export class GeneratorComponent implements OnInit {
 
   public close(status) {
     this.opened = false;
+    if (status == 'yes') {
+      document.getElementById('dialog-resultat-canvas').toBlob(function (blob) {
+        saveAs(blob, "pretty image.png");
+      });
+    }
   }
 
   public open() {

@@ -30,6 +30,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="section" *ngIf="isQrCode || isDataMatrix">
                 <div class="form-qrcode-container form-datamatrix-container">
                     <div class="text-plain-container" *ngIf="isText" [formGroup]="formGroupTxt">
@@ -146,6 +147,10 @@
                 </div>
             </div>
 
+            <div class="section">
+                <br/>
+                <button kendoButton [iconClass]="'fa fa-calendar fa-fw'" (click)="saveCode()">Save</button>
+            </div>
         </div>
         <div class="col-lg-4">
             <div id="col-code-inner">
@@ -164,10 +169,8 @@
                     </ejs-datamatrixgenerator>
                 </div>
             </div>
-
-            <button kendoButton [iconClass]="'fa fa-calendar fa-fw'" (click)="saveCode()">Events</button>
         </div>
-        <kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+        <kendo-dialog title="Save" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
             <div id="dialog-resultat" #dialogResultat style="text-align: center;"></div>
             <kendo-dialog-actions>
                 <button kendoButton (click)="close('no')">No</button>
