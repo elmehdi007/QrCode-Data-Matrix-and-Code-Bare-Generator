@@ -1,0 +1,14 @@
+input[type=radio] { 
+    margin-right: 16px;
+}
+
+.code-types {
+    margin-bottom: 10px;
+}
+
+.hidden-code{
+    width: 0;
+    height: 0;
+    background: none;
+    visibility: hidden;
+}

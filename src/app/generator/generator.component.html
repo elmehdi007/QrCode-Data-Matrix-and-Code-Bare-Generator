@@ -1,0 +1,167 @@
+<div class="container-fuild">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="section">
+                <div class="code-types">
+                    <kendo-buttongroup class="type-code" [selection]="'single'">
+                        <button kendoButton *ngFor="let codetype of codetypes" [toggleable]="true"
+                            [selected]="codetype.selected" (click)="selectedCodeType(codetype)">
+                            <div class="meal-icon">{{ codetype.icon }}</div>
+                            {{ codetype.label }}
+                        </button>
+                    </kendo-buttongroup>
+                </div>
+
+                <div class="data-type" *ngIf="isQrCode || isDataMatrix">
+                    <kendo-chip-list [selection]="'single'">
+                        <kendo-chip *ngFor="let dataType of dataTypes" (click)="selectedDataType(dataType)"
+                            [label]="dataType.label"> </kendo-chip>
+                    </kendo-chip-list>
+                </div>
+            </div>
+
+            <div class="section" *ngIf="isCodeBare">
+                <div class="form-codebare-container">
+                    <div class="text-plain-container" [formGroup]="formGroupCodeBare">
+                        <kendo-floatinglabel text="Valeur">
+                            <kendo-numerictextbox formControlName="valueCodeBare" [min]="1" [max]="999999999">
+                            </kendo-numerictextbox>
+                        </kendo-floatinglabel>
+                    </div>
+                </div>
+            </div>
+            <div class="section" *ngIf="isQrCode || isDataMatrix">
+                <div class="form-qrcode-container form-datamatrix-container">
+                    <div class="text-plain-container" *ngIf="isText" [formGroup]="formGroupTxt">
+                        <kendo-floatinglabel text="text">
+                            <input formControlName="text" kendoTextBox />
+                        </kendo-floatinglabel>
+                    </div>
+                    <div class="url-container" *ngIf="isUrl" [formGroup]="formGroupUrl">
+                        <kendo-floatinglabel text="url">
+                            <input formControlName="url" kendoTextBox />
+                        </kendo-floatinglabel>
+                    </div>
+                    <div class="phone-container" *ngIf="isPhone" [formGroup]="formGroupPhone">
+                        <!-- <input formControlName="phone" kendoTextBox />-->
+                        <kendo-floatinglabel text="phone">
+                            <kendo-maskedtextbox [mask]="'(999) 000-00-00-00'" formControlName="phone">
+                            </kendo-maskedtextbox>
+                        </kendo-floatinglabel>
+                    </div>
+                    <div class="sms-container" *ngIf="isSms" [formGroup]="formGroupSms">
+                        <div>
+                            <!--<kendo-maskedtextbox [mask]="mask" [maskOnFocus]="true" formControlName="phone" name="phone"></kendo-maskedtextbox>-->
+                            <kendo-floatinglabel text="phone">
+                                <kendo-maskedtextbox [mask]="'(999) 000-00-00-00'" formControlName="phone">
+                                </kendo-maskedtextbox>
+                            </kendo-floatinglabel>
+                        </div>
+                        <div>
+                            <kendo-floatinglabel text="SMS">
+                                <!--<kendo-maskedtextbox [mask]="mask" [maskOnFocus]="true" formControlName="phone" name="phone"></kendo-maskedtextbox>-->
+                                <textarea formControlName="sms" kendoTextArea></textarea>
+                            </kendo-floatinglabel>
+                        </div>
+                    </div>
+
+                    <div class="contact-container" *ngIf="isContact" [formGroup]="formGroupContact">
+                        <div>
+                            <kendo-floatinglabel text="Last Name">
+                                <input formControlName="lastName" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+                        <div>
+                            <kendo-floatinglabel text="First Name">
+                                <input formControlName="firstName" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Organization">
+                                <input formControlName="organization" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Email">
+                                <input formControlName="mail" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Phone">
+                                <input formControlName="phoneContact" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Cell">
+                                <input formControlName="cell" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Fax">
+                                <input formControlName="fax" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Street">
+                                <input formControlName="street" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Postcode">
+                                <input formControlName="postcode" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="City">
+                                <input formControlName="city" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Region/State">
+                                <input formControlName="regionOrState" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="Country">
+                                <input formControlName="country" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                        <div>
+                            <kendo-floatinglabel text="URL/Website">
+                                <input formControlName="website" kendoTextBox />
+                            </kendo-floatinglabel>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div [ngClass]="!isCodeBare  ? 'hidden-code' : ''">
+                <ejs-barcodegenerator style="display: block;" #barCode id="bar-code" width="200px" height="150px"
+                    mode="SVG" type="Codabar" value="0"></ejs-barcodegenerator>
+            </div>
+
+            <div [ngClass]="!isQrCode  ? 'hidden-code' : ''">
+                <ejs-qrcodegenerator style="display: block;" #qrCode id="qr-code" width="200px" height="150px"
+                    mode="SVG" value=" "></ejs-qrcodegenerator>
+            </div>
+            <div [ngClass]="!isDataMatrix  ? 'hidden-code' : ''">
+                <ejs-datamatrixgenerator style="display: block;" #qrcodeDataMatrix id="qr-code-data-matrix"
+                    width="200px" height="200px" mode="SVG" type="DataMatrix" value=" ">
+                </ejs-datamatrixgenerator>
+            </div>
+        </div>
+    </div>
