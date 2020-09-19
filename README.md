@@ -1,1 +1,1 @@
-# QrCode, Data Matrix and Code Bare Generator
+# QrCode, Data Matrix and Code Bare Generator using angular 
